@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  emergencybox:
+    build:
+      context: ..
+      dockerfile: EMUL/Dockerfile
+    container_name: emergencybox-emulator
+    ports:
+      - "8080:80"
+    volumes:
+      # Mount source files for live editing
+      - ../www:/opt/share/www:rw
+      # Persistent data
+      - emergencybox-data:/opt/share/data:rw
+      # Persistent uploads
+      - emergencybox-uploads:/opt/share/www/uploads:rw
+      # Logs
+      - emergencybox-logs:/opt/var/log/lighttpd:rw
+    environment:
+      - TZ=UTC
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    # Resource limits similar to router constraints
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 256M
+        reservations:
+          cpus: '0.5'
+          memory: 128M
+
+volumes:
+  emergencybox-data:
+    driver: local
+  emergencybox-uploads:
+    driver: local
+  emergencybox-logs:
+    driver: local
+
+networks:
+  default:
+    name: emergencybox-network

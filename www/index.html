@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmergencyBox - Offline Communication Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Announcement Bar -->
+        <div class="announcement-bar" id="announcement-bar" style="display: none;">
+            <div class="announcement-content">
+                <span class="announcement-icon"></span>
+                <div class="announcement-scroll">
+                    <div class="announcement-wrapper" id="announcement-wrapper">
+                        <div class="announcement-text" id="announcement-text"></div>
+                        <div class="announcement-text" id="announcement-text-2"></div>
+                        <div class="announcement-text" id="announcement-text-3"></div>
+                    </div>
+                </div>
+                <div class="announcement-controls">
+                    <button class="btn-small" id="pause-announcement" title="Pause/Play"></button>
+                    <button class="btn-small" id="close-announcement" title="Close"></button>
+                </div>
+            </div>
+        </div>
+
+        <header>
+            <h1> EmergencyBox</h1>
+            <p class="subtitle">Offline Communication & File Sharing</p>
+            <div class="status-bar">
+                <span class="status-indicator online"></span>
+                <span id="user-count">0 users connected</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Panel: Chat -->
+            <section class="chat-panel">
+                <div class="panel-header">
+                    <h2>Group Chat</h2>
+                    <button id="clear-chat-btn" class="btn-small" title="Clear chat history">Clear</button>
+                </div>
+
+                <div id="chat-messages" class="chat-messages"></div>
+
+                <div class="chat-input-container">
+                    <!-- Username Row -->
+                    <div class="input-row username-row">
+                        <input type="text" id="username-input" placeholder="Username (optional)" maxlength="50">
+                    </div>
+
+                    <!-- Message Input Row -->
+                    <div class="input-row message-row">
+                        <textarea id="chat-input" placeholder="Type your message..." maxlength="1000" rows="3"></textarea>
+                    </div>
+
+                    <!-- Send Button Row -->
+                    <div class="input-row button-row">
+                        <button id="send-btn" class="btn-primary">Send Message</button>
+                    </div>
+
+                    <!-- Options Row -->
+                    <div class="input-options">
+                        <label>
+                            <input type="checkbox" id="priority-msg">
+                            <span class="priority-label">Priority</span>
+                        </label>
+                        <button id="attach-file-btn" class="btn-small"> Link File</button>
+                        <span id="update-timer" class="update-timer">Updated now</span>
+                    </div>
+                    <div id="linked-file-preview" class="linked-file-preview" style="display: none;"></div>
+                </div>
+            </section>
+
+            <!-- Right Panel: File Sharing -->
+            <section class="files-panel">
+                <div class="panel-header">
+                    <h2>File Sharing</h2>
+                    <button id="refresh-files-btn" class="btn-small">Refresh</button>
+                </div>
+
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <form id="upload-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="file-input">Choose File (max 5GB):</label>
+                            <input type="file" id="file-input" name="file" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category-select">Category:</label>
+                            <select id="category-select" name="category">
+                                <option value="general">General</option>
+                                <option value="emergency">Emergency</option>
+                                <option value="media">Media</option>
+                                <option value="documents">Documents</option>
+                                <option value="custom">Custom Folder...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="custom-folder-group" style="display: none;">
+                            <label for="custom-folder">Folder Name:</label>
+                            <input type="text" id="custom-folder" name="custom_folder" placeholder="my-folder">
+                        </div>
+
+                        <div class="upload-progress" id="upload-progress" style="display: none;">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span id="progress-percent">0%</span>
+                                <span id="progress-speed"></span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Upload File</button>
+                    </form>
+                </div>
+
+                <!-- File List Section -->
+                <div class="file-search">
+                    <input type="text" id="search-files" placeholder="Search files...">
+                </div>
+
+                <div id="file-list" class="file-list"></div>
+            </section>
+        </div>
+    </div>
+
+    <!-- File Link Modal -->
+    <div id="file-link-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Link File to Message</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="modal-search" placeholder="Search files...">
+                <div id="modal-file-list" class="modal-file-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js?v=2"></script>
+</body>
+</html>
+]0;root@DD-WRT: ~
+[0;37m[[0;32m[01;32m[0;37m][[0;33mroot[0;37m@[0;96mDD-WRT[0;37m:[0;35m192.168.1.1[0;37m][[0;32m~[0;37m]

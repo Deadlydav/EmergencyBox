@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 Deadlydav
+Copyright (c) 2026 EmergencyBox Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+## Humanitarian Use Notice
+
+This software is specifically designed for disaster relief and emergency
+communication scenarios. The maintainers encourage its use in humanitarian
+contexts and provide community support for such deployments.
+
+Organizations using EmergencyBox for disaster relief are encouraged to:
+- Share deployment experiences and improvements with the community
+- Contribute bug fixes and enhancements back to the project
+- Document real-world use cases to improve the system
+
+For commercial deployments in non-emergency contexts, please consider
+contributing to the project or sponsoring development.

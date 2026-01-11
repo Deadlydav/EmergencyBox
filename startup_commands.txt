@@ -1,0 +1,9 @@
+sleep 10
+mkdir -p /tmp/mnt/sda1 /tmp/mnt/sda2
+mount | grep -q /dev/sda2 || mount /dev/sda2 /tmp/mnt/sda2
+mount | grep -q /dev/sda1 || mount /dev/sda1 /tmp/mnt/sda1
+rm -rf /opt
+ln -sfn /tmp/mnt/sda2 /opt
+/opt/etc/init.d/rc.unslung start
+sleep 5
+/opt/sbin/lighttpd -f /opt/etc/lighttpd/lighttpd.conf
