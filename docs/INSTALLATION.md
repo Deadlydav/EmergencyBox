@@ -11,12 +11,113 @@ This guide covers installing EmergencyBox on an ASUS RT-AC68U router running eit
 - USB storage device (recommended: 8GB+ for file storage)
 - Basic knowledge of Linux command line
 
+
 ## Option 1: DD-WRT Installation
 
 ### Step 1: Install DD-WRT Firmware
 
-1. Download the latest DD-WRT firmware for RT-AC68U from:
-   [https://www.asuswrt-merlin.net/download](https://dd-wrt.com/support/router-database/)
+1. Download DD-WRT for RT-AC68U:
+   https://dd-wrt.com/support/router-database/
+
+2. Flash firmware via router web interface
+3. Factory reset after flashing
+
+### Step 2: Enable USB Support and Optware
+
+1. Go to Services > USB
+2. Enable Core USB Support
+3. Enable USB Storage Support
+4. Apply settings
+
+### Step 3: Install Optware/Entware
+
+```bash
+# SSH into router
+ssh root@192.168.1.1
+
+# Install Entware (DD-WRT version)
+wget http://bin.entware.net/armv7sf-k3.2/installer/generic.sh
+sh generic.sh
+
+# Update
+opkg update
+opkg upgrade
+```
+
+### Step 4: Install Packages
+
+DD-WRT typically has better PHP support:
+
+```bash
+# Install packages
+opkg install php7 php7-cgi php7-mod-sqlite3 php7-mod-fileinfo
+opkg install lighttpd lighttpd-mod-fastcgi
+opkg install sqlite3-cli
+
+# Verify
+php -v
+```
+
+### Step 5-11: Follow Same Steps as Asuswrt-Merlin
+
+The deployment steps are identical to Asuswrt-Merlin steps 5-11.
+
+---
+
+## Troubleshooting
+
+### PHP Not Available in Entware
+
+**Problem:** No PHP packages in `opkg list`
+
+**Solutions:**
+1. **Use DD-WRT instead** - DD-WRT typically has better package support
+2. **Compile PHP manually** - Advanced users only
+3. **Use alternative backend** - Consider Python/Flask or Node.js alternatives
+
+### Large File Upload Fails
+
+**Problem:** Uploads fail for files >100MB
+
+**Check:**
+1. PHP settings in `/opt/etc/php.ini`:
+   - `upload_max_filesize = 5G`
+   - `post_max_size = 5G`
+   - `max_execution_time = 600`
+   - `max_input_time = 600`
+   - `memory_limit = 256M`
+
+2. lighttpd settings in `/opt/etc/lighttpd/lighttpd.conf`:
+   - `server.max-request-size = 5368709120`
+   - `server.max-write-idle = 600`
+
+3. Restart services:
+   ```bash
+   /opt/etc/init.d/S80lighttpd restart
+   ```
+
+### Database Errors
+
+**Problem:** SQLite errors or missing database
+
+**Solution:**
+```bash
+# Recreate database
+rm /opt/share/data/emergencybox.db
+php /opt/share/www/api/init_db.php
+
+# Check permissions
+chmod 755 /opt/share/data
+chmod 644 /opt/share/data/emergencybox.db
+```
+
+
+## Option 2: Asuswrt-Merlin Installation
+
+### Step 1: Install Asuswrt-Merlin Firmware
+
+1. Download the latest Asuswrt-Merlin firmware for RT-AC68U from:
+   [https://www.asuswrt-merlin.net/download]https://www.asuswrt-merlin.net/download
 
 2. Flash the firmware through the router's web interface:
    - Login to router admin panel (usually http://192.168.1.1)
@@ -196,104 +297,7 @@ chmod +x /jffs/scripts/post-mount
 
 ---
 
-## Option 2: DD-WRT Installation
 
-### Step 1: Install DD-WRT Firmware
-
-1. Download DD-WRT for RT-AC68U:
-   https://dd-wrt.com/support/router-database/
-
-2. Flash firmware via router web interface
-3. Factory reset after flashing
-
-### Step 2: Enable USB Support and Optware
-
-1. Go to Services > USB
-2. Enable Core USB Support
-3. Enable USB Storage Support
-4. Apply settings
-
-### Step 3: Install Optware/Entware
-
-```bash
-# SSH into router
-ssh root@192.168.1.1
-
-# Install Entware (DD-WRT version)
-wget http://bin.entware.net/armv7sf-k3.2/installer/generic.sh
-sh generic.sh
-
-# Update
-opkg update
-opkg upgrade
-```
-
-### Step 4: Install Packages
-
-DD-WRT typically has better PHP support:
-
-```bash
-# Install packages
-opkg install php7 php7-cgi php7-mod-sqlite3 php7-mod-fileinfo
-opkg install lighttpd lighttpd-mod-fastcgi
-opkg install sqlite3-cli
-
-# Verify
-php -v
-```
-
-### Step 5-11: Follow Same Steps as Asuswrt-Merlin
-
-The deployment steps are identical to Asuswrt-Merlin steps 5-11.
-
----
-
-## Troubleshooting
-
-### PHP Not Available in Entware
-
-**Problem:** No PHP packages in `opkg list`
-
-**Solutions:**
-1. **Use DD-WRT instead** - DD-WRT typically has better package support
-2. **Compile PHP manually** - Advanced users only
-3. **Use alternative backend** - Consider Python/Flask or Node.js alternatives
-
-### Large File Upload Fails
-
-**Problem:** Uploads fail for files >100MB
-
-**Check:**
-1. PHP settings in `/opt/etc/php.ini`:
-   - `upload_max_filesize = 5G`
-   - `post_max_size = 5G`
-   - `max_execution_time = 600`
-   - `max_input_time = 600`
-   - `memory_limit = 256M`
-
-2. lighttpd settings in `/opt/etc/lighttpd/lighttpd.conf`:
-   - `server.max-request-size = 5368709120`
-   - `server.max-write-idle = 600`
-
-3. Restart services:
-   ```bash
-   /opt/etc/init.d/S80lighttpd restart
-   ```
-
-### Database Errors
-
-**Problem:** SQLite errors or missing database
-
-**Solution:**
-```bash
-# Recreate database
-rm /opt/share/data/emergencybox.db
-php /opt/share/www/api/init_db.php
-
-# Check permissions
-chmod 755 /opt/share/data
-chmod 644 /opt/share/data/emergencybox.db
-```
 
 ### Out of Memory
 
