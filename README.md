@@ -113,10 +113,8 @@ See [ATAK.md](ATAK.md) for complete tactical mapping specification and implement
 
 ### Planned Enhancements 🎯
 - **Voice Messages** - Record and share audio messages
-- **Multi-Router Mesh** - Sync multiple routers for extended coverage
 - **Image Thumbnails** - Preview images in file browser
 - **Message Search** - Search chat history
-- **Export History** - Export chat to PDF/text
 
 ---
 
@@ -664,41 +662,29 @@ Organizations using EmergencyBox for humanitarian purposes are encouraged to sha
 ## Project Status & Roadmap
 
 **Current Version:** 0.9 (Beta)
-**Status:** ⚠️ Work in Progress (Core features working)
+**Status:** ⚠️ Work in Progress - Hobby project by solo developer
 **Last Updated:** January 2026
 
-### Development Roadmap
+### What Works Now ✅
+- Group chat with real-time updates
+- File sharing (up to 5GB)
+- SQLite database
+- Admin panel (announcements, moderation)
 
-**Version 1.0** (Target: Q2 2026) - Production Release
-- ✅ Stable chat system (DONE)
-- ✅ Stable file sharing (DONE)
-- 🎯 Complete deployment testing
-- 🎯 Production hardening
-- 🎯 Security audit
-- 🎯 Performance optimization
+### What I'm Working On 🎯
+- **ATAK-style tactical mapping** - Offline maps with markers, routes, measurements
+  - See [ATAK.md](ATAK.md) for full specification
+- Deployment testing and bug fixes
+- Documentation improvements
 
-**Version 1.1** (Target: Q2-Q3 2026) - ATAK Mapping
-- 🎯 Offline OpenStreetMap tile serving
-- 🎯 Tactical marker system (hazards, safe zones, etc.)
-- 🎯 Distance and area measurement tools
-- 🎯 Route planning with waypoints
-- 🎯 Coordinate sharing in chat
-- 🎯 Photo attachment to markers
-- 🎯 Geolocation tracking (optional)
+### Ideas for the Future 💡
+*(No promises, just things I'd like to try)*
+- Voice message recording
+- Image thumbnails in file browser
+- Message search
+- Better performance optimizations
 
-**Version 1.2** (Target: Q3 2026) - Enhanced Features
-- 🎯 Voice message recording
-- 🎯 Image thumbnails in file browser
-- 🎯 Message search functionality
-- 🎯 Export chat history to PDF/text
-
-**Version 2.0** (Target: Q4 2026) - Advanced Coordination
-- 🎯 Multi-router mesh synchronization
-- 🎯 Marker clustering performance optimization
-- 🎯 Advanced route planning tools
-- 🎯 Admin dashboard improvements
-
-See [ATAK.md](ATAK.md) for detailed mapping implementation roadmap.
+**Note:** This is a hobby project. I work on it when I have time. No fixed timeline or guarantees. If you want to help, contributions are welcome!
 
 ---
 
@@ -707,18 +693,10 @@ See [ATAK.md](ATAK.md) for detailed mapping implementation roadmap.
 ### Community Support
 
 - **GitHub Issues** - Bug reports and feature requests
-- **Discussions** - General questions and community help
+- **GitHub Discussions** - General questions and community help
 - **DD-WRT Forums** - Router-specific technical support
 
-### Commercial Support
-
-For organizations deploying EmergencyBox in critical scenarios:
-- Training for disaster response teams
-- Custom feature development
-- On-site deployment assistance
-- 24/7 emergency support contracts
-
-Contact: emergencybox@example.com (update with actual contact)
+**Note:** This is a hobby project by a solo developer. I'll help when I can, but response times vary. Community contributions are very welcome!
 
 ---
 
