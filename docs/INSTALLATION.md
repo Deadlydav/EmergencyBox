@@ -11,12 +11,12 @@ This guide covers installing EmergencyBox on an ASUS RT-AC68U router running eit
 - USB storage device (recommended: 8GB+ for file storage)
 - Basic knowledge of Linux command line
 
-## Option 1: Asuswrt-Merlin Installation
+## Option 1: DD-WRT Installation
 
-### Step 1: Install Asuswrt-Merlin Firmware
+### Step 1: Install DD-WRT Firmware
 
-1. Download the latest Asuswrt-Merlin firmware for RT-AC68U from:
-   https://www.asuswrt-merlin.net/download
+1. Download the latest DD-WRT firmware for RT-AC68U from:
+   [https://www.asuswrt-merlin.net/download](https://dd-wrt.com/support/router-database/)
 
 2. Flash the firmware through the router's web interface:
    - Login to router admin panel (usually http://192.168.1.1)
