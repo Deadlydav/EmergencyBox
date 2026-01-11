@@ -6,7 +6,7 @@
 [![Status: Work in Progress](https://img.shields.io/badge/Status-Work%20In%20Progress-yellow.svg)]()
 [![Core Features: Working](https://img.shields.io/badge/Core%20Features-Working-success.svg)]()
 
-> A self-contained, offline communication and coordination system for disaster relief scenarios. Turn your router into a lifeline when the internet goes down.
+> A self-contained, offline communication and coordination system for disaster relief scenarios inspired-by-piratebox. Turn your router into a lifeline when the internet goes down.
 
 ## ⚠️ Project Status: Work in Progress
 
