@@ -117,7 +117,7 @@ chmod 644 /opt/share/data/emergencybox.db
 ### Step 1: Install Asuswrt-Merlin Firmware
 
 1. Download the latest Asuswrt-Merlin firmware for RT-AC68U from:
-   [https://www.asuswrt-merlin.net/download]https://www.asuswrt-merlin.net/download
+   [https://www.asuswrt-merlin.net/download]
 
 2. Flash the firmware through the router's web interface:
    - Login to router admin panel (usually http://192.168.1.1)
