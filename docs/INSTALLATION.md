@@ -185,7 +185,7 @@ If Entware has no PHP packages, you'll need to compile PHP manually or use a pre
 
 ```bash
 # This is complex and not recommended unless necessary
-# Consider switching to DD-WRT instead (see Option 2)
+# Consider switching to DD-WRT instead (see Option 1)
 ```
 
 **Install web server and other dependencies:**
