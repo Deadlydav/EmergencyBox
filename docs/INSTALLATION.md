@@ -58,9 +58,97 @@ opkg install sqlite3-cli
 php -v
 ```
 
-### Step 5-11: Follow Same Steps as Asuswrt-Merlin
+### Step 5: Deploy EmergencyBox Files
 
-The deployment steps are identical to Asuswrt-Merlin steps 5-11.
+```bash
+# Create web directory
+mkdir -p /opt/share/www
+mkdir -p /opt/share/www/uploads/{emergency,media,documents,general}
+mkdir -p /opt/share/data
+
+# Copy EmergencyBox files to router
+# From your computer, use SCP:
+scp -r www/* admin@192.168.1.1:/opt/share/www/
+scp -r config/* admin@192.168.1.1:/opt/etc/
+
+# Set permissions
+chmod -R 755 /opt/share/www
+chmod -R 777 /opt/share/www/uploads
+chmod -R 755 /opt/share/data
+```
+
+### Step 6: Configure lighttpd
+
+```bash
+# Backup original config
+cp /opt/etc/lighttpd/lighttpd.conf /opt/etc/lighttpd/lighttpd.conf.bak
+
+# Copy EmergencyBox config
+cp /opt/etc/lighttpd.conf /opt/etc/lighttpd/lighttpd.conf
+
+# Adjust paths if needed
+vi /opt/etc/lighttpd/lighttpd.conf
+```
+
+### Step 7: Configure PHP
+
+```bash
+# Copy PHP configuration
+cp /opt/etc/php.ini /opt/etc/php.ini
+
+# Verify max upload settings
+grep upload_max_filesize /opt/etc/php.ini
+grep post_max_size /opt/etc/php.ini
+```
+
+### Step 8: Initialize Database
+
+```bash
+# Run database initialization
+php /opt/share/www/api/init_db.php
+
+# Verify database was created
+ls -lh /opt/share/data/emergencybox.db
+```
+
+### Step 9: Start Services
+
+```bash
+# Start lighttpd
+/opt/etc/init.d/S80lighttpd start
+
+# Check if running
+ps | grep lighttpd
+
+# Check logs
+tail -f /opt/var/log/lighttpd/error.log
+```
+
+### Step 10: Configure Autostart
+
+Create startup script:
+```bash
+vi /jffs/scripts/post-mount
+
+# Add the following:
+#!/bin/sh
+sleep 5
+/opt/etc/init.d/S80lighttpd start
+```
+
+Make it executable:
+```bash
+chmod +x /jffs/scripts/post-mount
+```
+
+### Step 11: Test Installation
+
+1. Connect to your router's WiFi network
+2. Open browser and navigate to: http://192.168.1.1
+3. You should see the EmergencyBox interface
+4. Test chat functionality
+5. Test file upload (start with small file)
+6. Test large file upload (5GB test)
 
 ---
 
